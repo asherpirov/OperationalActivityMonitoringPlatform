@@ -15,10 +15,3 @@ def get_connection():
         database = os.getenv("MYSQL_DATABASE")
     )
     return connection
-
-connection = get_connection()
-
-if connection.is_connected():
-    print("Connected to MySQL successfully")
-
-connection.close()

@@ -1,20 +1,21 @@
 from pathlib import Path
-
 from producer import produce_message, flush_messages
+import csv
+import json
 
 
 def main():
-    base_dir = Path(__file__).resolve().parents[2]
+    base_dir = Path(__file__).resolve().parent
     csv_path = base_dir / "data" / "activity_readings.csv"
 
     with open(csv_path, "r", encoding="utf-8") as file:
 
-        next(file)
+        reader = csv.DictReader(file)
 
-        for line in file:
-            line = line.rstrip("\r\n")
+        for row in reader:
+            message = json.dumps(row)
 
-            produce_message(line)
+            produce_message(message)
 
     flush_messages()
 

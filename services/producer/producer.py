@@ -1,7 +1,12 @@
 from confluent_kafka import Producer
 import os
 
-conf = {'bootstrap.servers':  'localhost:9092'}
+conf = conf = {
+    "bootstrap.servers": os.getenv(
+        "KAFKA_BOOTSTRAP_SERVERS",
+        "localhost:9092"
+    )
+}
 producer = Producer(conf)
 topic = 'activity-readings'
 

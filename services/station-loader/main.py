@@ -15,7 +15,7 @@ def main():
 
         print("Stations table is ready.")
 
-        base_dir = Path(__file__).resolve().parents[2]
+        base_dir = Path(__file__).resolve().parent
         csv_path = base_dir / "data" / "stations.csv"
 
         df = pd.read_csv(csv_path)
